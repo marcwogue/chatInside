@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { useUser } from './userContext'; // Pour accéder à l'utilisateur courant
 import { useBD } from './bd';   // Pour sauvegarder les utilisateurs mis à jour
 import { User, Discussion, Message } from './AppType'; // Nos types définis
-import { send } from '@/API/gemini';
+import { send } from '../API/gemini';
 // Interface pour le ChatContext
 interface ChatContextType {
   currentDiscussion: Discussion | null;
