@@ -5,8 +5,12 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import '../global.css'
 
 import { useColorScheme } from '@/components/useColorScheme';
+import { BDProvider } from '@/context/bd';
+import { UserProvider } from '@/context/userContext';
+import { ChatProvider } from '@/context/chat';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,10 +54,18 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
+      <BDProvider>
+        <UserProvider>
+          <ChatProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+            </Stack>
+          </ChatProvider>
+        
+        </UserProvider>
+      </BDProvider>
+      
     </ThemeProvider>
   );
 }
